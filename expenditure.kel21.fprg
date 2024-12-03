@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="USER"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2022-12-17 09:23:35 PM"/>
+        <attribute name="created" value="VVNFUjtMQVBUT1AtVUVWR1BNU1U7MjAyMi0xMi0xNjswODo0MTo0NyBBTTsyNzMz"/>
+        <attribute name="edited" value="VVNFUjtMQVBUT1AtVUVWR1BNU1U7MjAyMi0xMi0xNzswOToyMzozNSBQTTszOzI4NTc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <call expression="input()"/>
+            <call expression="cariTanggal(Tanggal, bulan, tahun)"/>
+            <call expression="caribulan(bulan, tahun)"/>
+            <call expression="caritahun(tahun)"/>
+            <declare name="pilihan" type="Integer" array="False" size=""/>
+            <declare name="tahun, bulan, tanggal" type="Integer" array="False" size=""/>
+            <do expression="">
+                <output expression="&quot;\n=============== SELAMAT DATANG ===============\n\n +             1. Input Pengeluaran                      +\n +                                   2. Cari Pengeluaran Per  Tanggal           +\n +                    3. Cari Pengeluaran Per Bulan             +\n +                              4. Cari Pengeluaran Per Tahun             +\n +                               5. Keluar                         + ==============================================\n                                        Pilihan :&quot;" newline="True"/>
+                <input variable="pilihan"/>
+                <if expression="pilihan">
+                    <then>
+                        <if expression="case1">
+                            <then>
+                                <output expression="&quot;\n----- Masukkan Data Pengeluaran -----\n\n&quot;" newline="True"/>
+                                <call expression="input()"/>
+                                <call expression="getchar()"/>
+                                <call expression="system(&quot;PAUSE&quot;)"/>
+                                <breakpoint expression="" always="True"/>
+                            </then>
+                            <else>
+                                <if expression="case2">
+                                    <then>
+                                        <output expression="&quot;\n----- Pengeluaran Per Tanggal -----\n\n&quot;" newline="True"/>
+                                        <output expression="&quot;Masukkan tahun : &quot;" newline="True"/>
+                                        <input variable="tahun"/>
+                                        <output expression="&quot;Masukkan bulan : &quot;" newline="True"/>
+                                        <input variable="bulan"/>
+                                        <output expression="&quot;Masukkan Tanggal : &quot;" newline="True"/>
+                                        <input variable="tanggal"/>
+                                        <call expression="cariTanggal(Tanggal, bulan, tahun)"/>
+                                        <call expression="getchar()"/>
+                                        <call expression="system(&quot;PAUSE&quot;)"/>
+                                        <breakpoint expression="" always="True"/>
+                                    </then>
+                                    <else>
+                                        <if expression="case3">
+                                            <then>
+                                                <output expression="&quot;----- Pengeluaran Per Bulan -----\n&quot;" newline="True"/>
+                                                <output expression="&quot;Masukkan tahun : &quot;" newline="True"/>
+                                                <input variable="tahun"/>
+                                                <output expression="&quot;Masukkan bulan : &quot;" newline="True"/>
+                                                <input variable="bulan"/>
+                                                <call expression="caribulan(bulan, tahun)"/>
+                                                <call expression="getchar()"/>
+                                                <call expression="system(&quot;PAUSE&quot;)"/>
+                                                <breakpoint expression="" always="True"/>
+                                            </then>
+                                            <else>
+                                                <if expression="case4">
+                                                    <then>
+                                                        <output expression="&quot;----- Pengeluaran Per Tahun -----\n&quot;" newline="True"/>
+                                                        <output expression="&quot;Masukkan tahun : &quot;" newline="True"/>
+                                                        <input variable="tahun"/>
+                                                        <call expression="caritahun(tahun)"/>
+                                                        <call expression="getchar()"/>
+                                                        <call expression="system(&quot;PAUSE&quot;)"/>
+                                                        <breakpoint expression="" always="True"/>
+                                                    </then>
+                                                    <else>
+                                                        <if expression="case5">
+                                                            <then>
+                                                                <breakpoint expression="" always="True"/>
+                                                            </then>
+                                                            <else/>
+                                                        </if>
+                                                    </else>
+                                                </if>
+                                            </else>
+                                        </if>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </then>
+                    <else/>
+                </if>
+                <while expression="pilihan !=4"/>
+            </do>
+            <call expression="input()"/>
+            <declare name="Tanggal, bulan, tahun, uang" type="Integer" array="False" size=""/>
+            <open expression="&quot;Expenditure.txt&quot;" mode="write"/>
+            <output expression="&quot;Masukkan tahun : &quot;" newline="True"/>
+            <input variable="tahun"/>
+            <output expression="&quot;Masukkan bulan : &quot;" newline="True"/>
+            <input variable="bulan"/>
+            <output expression="&quot;Masukkan Tanggal : &quot;" newline="True"/>
+            <input variable="Tanggal"/>
+            <output expression="&quot;Masukkan uang : &quot;" newline="True"/>
+            <input variable="uang"/>
+            <write expression="&quot;%d %d %d %d\n&quot;"/>
+            <close/>
+            <call expression="cariTanggal(Tanggal, bulan, tahun)"/>
+            <open expression="&quot;Expenditure.txt&quot;" mode="read"/>
+            <declare name="Tanggal2, bulan2, tahun2, uang2" type="Integer" array="False" size=""/>
+            <declare name="total" type="Integer" array="False" size=""/>
+            <assign variable="total" expression="0"/>
+            <while expression="fp =!EOF">
+                <if expression="Tanggal&amp;Tanggal2= bulan&amp;bulan2=Tahun&amp;Tahun2">
+                    <then>
+                        <assign variable="total" expression="total + uang2"/>
+                    </then>
+                    <else/>
+                </if>
+            </while>
+            <output expression="&quot;\nTotal pengeluaran selama %d %d %d adalah Sebesar Rp.%d\n&quot;" newline="True"/>
+            <close/>
+            <call expression="caribulan(bulan, tahun)"/>
+            <open expression="&quot;Expenditure.txt&quot;" mode="read"/>
+            <declare name="Tanggal2, bulan2, tahun2, uang2" type="Integer" array="False" size=""/>
+            <declare name="total" type="Integer" array="False" size=""/>
+            <assign variable="total" expression="0"/>
+            <while expression="fp !=EOF">
+                <if expression="bulan&amp; bulan2= tahun&amp;tahun2">
+                    <then>
+                        <assign variable="total" expression="total + uang2"/>
+                        <output expression="&quot;\nTotal pengeluaran selama %d %d adalah Sebesar Rp.%d\n&quot;" newline="True"/>
+                        <close/>
+                    </then>
+                    <else/>
+                </if>
+            </while>
+            <call expression="caritahun(tahun)"/>
+            <open expression="&quot;Expenditure.txt&quot;" mode="read"/>
+            <declare name="Tanggal2, bulan2, tahun2, uang2" type="Integer" array="False" size=""/>
+            <declare name="total" type="Integer" array="False" size=""/>
+            <assign variable="total" expression="0"/>
+            <while expression="fp != EOF">
+                <if expression="tahun=tahun2">
+                    <then>
+                        <assign variable="total" expression="total + uang2"/>
+                    </then>
+                    <else/>
+                </if>
+            </while>
+            <output expression="&quot;\nTotal pengeluaran selama %d adalah Sebesar Rp.%d\n&quot;" newline="True"/>
+            <close/>
+        </body>
+    </function>
+</flowgorithm>
